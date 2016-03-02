@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<DISRUPTIONS time="2016-02-15T08:50:00" valid="3" cancelled="1">
+  <DISRUPTION id="48070" type="2" source="2">
+    <VALIDITY status="1" from="2016-02-15T07:42:00" to="2016-02-15T09:05:00"/>
+    <INFO>
+      <TEXT lang="fi"><![CDATA[Seutuliikenteen linja 421 Elielinaukiolta, klo 08:05 peruttu. Syy: tekninen vika.]]></TEXT>
+      <TEXT lang="se"><![CDATA[Regiontrafik, linje 421 fr�n Elielplatsen, kl. 08:05 inst�lld. Orsak: tekniska problem.]]></TEXT>
+      <TEXT lang="en"><![CDATA[Regional traffic, line 421 from Elielinaukio, 08:05 cancelled. Cause: technical problems.]]></TEXT>
+    </INFO>
+    <TARGETS>
+      <LINE id="4421" direction="1" linetype="5">421</LINE>
+    </TARGETS>
+  </DISRUPTION>
+  <DISRUPTION id="48073" type="2" source="2">
+    <VALIDITY status="1" from="2016-02-15T08:35:00" to="2016-02-15T09:40:00"/>
+    <INFO>
+      <TEXT lang="fi"><![CDATA[Seutuliikenteen linja 172 Kantvikist�, klo 08:40 peruttu. Syy: tekninen vika.]]></TEXT>
+      <TEXT lang="se"><![CDATA[Regiontrafik, linje 172 fr�n Kantvik, kl. 08:40 inst�lld. Orsak: tekniska problem.]]></TEXT>
+      <TEXT lang="en"><![CDATA[Regional traffic, line 172 from Kantvik, 08:40 cancelled. Cause: technical problems.]]></TEXT></INFO><TARGETS><LINE id="6172" direction="2" linetype="5">172</LINE></TARGETS></DISRUPTION><DISRUPTION id="48074" type="2" source="2"><VALIDITY status="1" from="2016-02-15T08:47:00" to="2016-02-15T09:48:00"/><INFO><TEXT lang="fi"><![CDATA[Helsingin sis�isen liikenteen linja 69 Kampista, klo 08:48 peruttu. Syy: kalustopula.]]></TEXT><TEXT lang="se"><![CDATA[Helsingfors lokaltrafik, linje 69 fr�n Kampen, kl. 08:48 inst�lld. Orsak: vagnbrist.]]></TEXT><TEXT lang="en"><![CDATA[Helsinki local traffic, line 69 from Kamppi, 08:48 cancelled. Cause: shortage of vehicles.]]></TEXT></INFO><TARGETS><LINE id="1069" direction="1" linetype="1">69</LINE></TARGETS></DISRUPTION><DISRUPTION id="48072" type="2" source="1"><VALIDITY status="0" from="2016-02-15T08:09:32" to="2016-02-15T09:06:00"/><INFO><TEXT lang="fi"><![CDATA[]]></TEXT><TEXT lang="se"><![CDATA[]]></TEXT><TEXT lang="en"><![CDATA[]]></TEXT></INFO><TARGETS><LINE id="1300M" direction="1" linetype="6">Ruoholahti - Mellunm�ki</LINE><LINE id="1300M" direction="2" linetype="6">Ruoholahti - Mellunm�ki</LINE><LINE id="1300V" direction="2" linetype="6">Ruoholahti - Vuosaari</LINE><LINE id="1300V" direction="1" linetype="6">Ruoholahti - Vuosaari</LINE></TARGETS></DISRUPTION></DISRUPTIONS>
