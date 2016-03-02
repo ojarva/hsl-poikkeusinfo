@@ -132,23 +132,23 @@ class PoikkeusInfoParser(object):
             if not match:
                 continue
 
-            parsed_timestamp = datetime.datetime(1900, 01, 01)
+            parsed_timestamp = datetime.datetime(1900, 1, 1)
             try:
                 end_date = match.group("end_date")
                 for date_format in self.DATE_FORMATS:
                     try:
                         day_part = datetime.datetime.strptime(end_date, date_format)
-                        parsed_timestamp += (day_part - datetime.datetime(1900, 01, 01))
+                        parsed_timestamp += (day_part - datetime.datetime(1900, 1, 1))
                         break
                     except ValueError:
                         pass
             except IndexError:
-                parsed_timestamp += (datetime.datetime(1900, timestamp.month, timestamp.day) - datetime.datetime(1900, 01, 01))
+                parsed_timestamp += (datetime.datetime(1900, timestamp.month, timestamp.day) - datetime.datetime(1900, 1, 1))
 
             for time_format in self.TIME_FORMATS:
                 try:
                     time_part = datetime.datetime.strptime(match.group("end_time"), time_format)
-                    parsed_timestamp += (time_part - datetime.datetime(1900, 01, 01))
+                    parsed_timestamp += (time_part - datetime.datetime(1900, 1, 1))
                     parsed_timestamp += (datetime.datetime(timestamp.year, 1, 1) - datetime.datetime(1900, 1, 1))
                     return parsed_timestamp
                 except ValueError:
