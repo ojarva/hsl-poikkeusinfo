@@ -14,6 +14,7 @@ import redis
 import requests
 import time
 import xmltodict
+import pytz
 
 
 class DateTimeEncoder(json.JSONEncoder):
@@ -126,6 +127,8 @@ class PoikkeusInfoParser(object):
         if "Arvioitu kesto: " not in reason:
             return None
 
+        helsinki = pytz.timezone("Europe/Helsinki")
+
         estimated_length = reason.split("Arvioitu kesto: ")[1]
         for regex in self.TIME_RE:
             match = regex.match(estimated_length)
@@ -150,7 +153,7 @@ class PoikkeusInfoParser(object):
                     time_part = datetime.datetime.strptime(match.group("end_time"), time_format)
                     parsed_timestamp += (time_part - datetime.datetime(1900, 1, 1))
                     parsed_timestamp += (datetime.datetime(timestamp.year, 1, 1) - datetime.datetime(1900, 1, 1))
-                    return parsed_timestamp
+                    return helsinki.localize(parsed_timestamp)
                 except ValueError:
                     pass
         return None
@@ -199,8 +202,9 @@ class PoikkeusInfoParser(object):
 
     @classmethod
     def parse_isoformat(cls, time_string):
-        """ Parses ISO-8601 datetimes (without timestamp) to python datetime """
-        return datetime.datetime.strptime(time_string, "%Y-%m-%dT%H:%M:%S")
+        """ Parses ISO-8601 datetimes (without timezone) to python datetime """
+        helsinki = pytz.timezone("Europe/Helsinki")
+        return helsinki.localize(datetime.datetime.strptime(time_string, "%Y-%m-%dT%H:%M:%S"))
 
     def parse_validity(self, validity):
         """ Parses notification validity timestamps and "valid" tag.
