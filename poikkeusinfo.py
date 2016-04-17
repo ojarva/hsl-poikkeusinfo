@@ -15,6 +15,7 @@ import requests
 import time
 import xmltodict
 import pytz
+import logging
 
 
 class DateTimeEncoder(json.JSONEncoder):
@@ -289,13 +290,20 @@ class PoikkeusInfoRunner(object):
         self.pif = PoikkeusInfoFilter(LINES)
         self.redis_instance = redis.StrictRedis()
         self.last_run_at = None
+        self.logger = logging.getLogger("poikkeusinfo-runner")
+        self.logger.setLevel(logging.INFO)
+        format_string = "%(asctime)s - %(levelname)s - %(message)s"
+        formatter = logging.Formatter(format_string)
+        ch = logging.StreamHandler()
+        ch.setFormatter(formatter)
+        self.logger.addHandler(ch)
 
     def fetch(self):
         """ A single fetch. Returns False on failure. Saves and publishes updates to redis. """
 
         resp = requests.get("http://www.poikkeusinfo.fi/xml/v2/fi")
         if resp.status_code != 200:
-            print "%s Fetching failed with status code %s" % (datetime.datetime.now(), resp.status_code)
+            self.logger.info("Fetching failed with status code %s", resp.status_code)
             return False
         parsed = self.pip.parse(resp.content, datetime.datetime.now())
         filtered = self.pif.filter(parsed)
@@ -308,10 +316,10 @@ class PoikkeusInfoRunner(object):
         """ Runner for periodic fetching and publishing. Configure interval with FETCH_INTERVAL variable. """
         self.last_run_at = time.time()
         while True:
-            print "%s Starting" % datetime.datetime.now()
+            self.logger.info("Starting")
             self.fetch()
             sleep_time = max(FETCH_INTERVAL / 2, FETCH_INTERVAL - (time.time() - self.last_run_at))
-            print "%s Sleeping %s" % (datetime.datetime.now(), sleep_time)
+            self.logger.info("Sleeping %ss", sleep_time)
             time.sleep(sleep_time)
 
 
