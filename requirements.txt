@@ -1,4 +1,4 @@
 redis==4.5.4
-requests==2.32.2
+requests==2.32.4
 xmltodict==0.10.1
 pytz>=2020.5
